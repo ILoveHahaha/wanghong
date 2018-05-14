@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>标题</title>
+    <link rel="stylesheet/less" type="text/css" href="../../public.less">
+    <link rel="stylesheet/less" type="text/css" href="index.less">
+    <script src="../../less.js"></script>
+    <script src="../../flexible.js"></script>
+</head>
+<body>
+    <div class="index" id="index">
+        <div class="contain">
+            <div class="left"></div>
+            <div class="center">
+                <div class="title"></div>
+                <div class="indexContain"></div>
+                <div class="word">
+                    <!--<p>无论你是乡村还是城市的朋友，不管你是怀念曾经的乡村还是期待未来的乡村，乡村拍立得都能制作你们想要的乡村。</p>-->
+                    <!--<p>点击START,制定属于你自己心目中的乡村吧！</p>-->
+                    <div class="wordImg"></div>
+                    <div class="button"></div>
+                </div>
+            </div>
+            <div class="right"></div>
+        </div>
+    </div>
+</body>
+<script>
+    let button = document.getElementsByClassName('button')[0]
+    button.onclick = function () {
+      window.location = 'http://localhost:63342/%E5%88%AB%E4%BA%BA%E9%A1%B9%E7%9B%AE/page/second/second.html'
+    }
+</script>
+</html>
