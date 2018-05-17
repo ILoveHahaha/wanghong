@@ -181,7 +181,7 @@ window.onload = function () {
   
   // 画图
   function drawImage({0: path, 1: name}) {
-    let selectIcon = document.querySelectorAll(`p.${path}`)
+    let selectIcon = document.querySelectorAll(`.${path}Icon`)
     if (path === 'sky' || path === 'farm') {
       if (selectIcon.length > 0) {
         selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
@@ -189,7 +189,7 @@ window.onload = function () {
       } else {
         let p = document.createElement('p')
         let i = document.createElement('i')
-        p.className = path
+        p.className = `${path}Icon`
         i.style.height = '3.5rem'
         i.style.width = '5rem'
         p.style.marginTop = '-2.25rem'
