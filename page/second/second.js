@@ -134,7 +134,7 @@ window.onload = function () {
         if (touches[0].target.tagName === 'I' && touches[1].target.tagName === 'I') {
           drop(ev)
         } else if (touches[0].target.tagName === 'P' && touches[1].target.tagName === 'P') {
-          drop(ev)
+          // drop(ev)
         }
       }
     })
@@ -217,7 +217,7 @@ window.onload = function () {
     width = width > 0 ? width : -width
     height = height > 0 ? height : -height
     // ev.target.style.width =
-    console.log(ev.target.style.width)
+    console.log(ev.target.clientWidth)
   }
   
   // 移动
