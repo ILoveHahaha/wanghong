@@ -216,8 +216,8 @@ window.onload = function () {
     let height = ev.targetTouches[0].clientY - ev.targetTouches[1].clientY
     width = width > 0 ? width : -width
     height = height > 0 ? height : -height
-    ev.target.style.width = (ev.target.clientWidth + width) + 'px'
-    ev.target.style.height = (ev.target.clientHeight + height) + 'px'
+    ev.target.style.width = (ev.target.clientWidth + width / 10) + 'px'
+    ev.target.style.height = (ev.target.clientHeight + height / 10) + 'px'
   }
   
   // 移动
