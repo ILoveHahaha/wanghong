@@ -23,7 +23,7 @@ window.onload = function () {
     let targetName = target.id
     // console.log(target.style['0'])
     // console.log(target.name)
-    console.log(target.parentNode.getElementsByTagName('i'))
+    // console.log(target.parentNode.getElementsByTagName('i'))
     if (targetName) {
       document.getElementsByClassName(targetName)[0].style.left = 0
     }
@@ -119,6 +119,7 @@ window.onload = function () {
     let top = document.getElementsByClassName('title')[0].style.height * 0.9
     currentPaint.curX1 = touches[0].clientX - left
     currentPaint.curY1 = touches[0].clientY - top
+    console.log(ev.targetTouches)
     paint.addEventListener('touchmove', function (ev) {
       // console.log(ev.target.tagName)
       if (touches.length === 1) {
@@ -212,7 +213,7 @@ window.onload = function () {
   
   // 移动
   function move(ev, left, top) {
-    console.log(ev.targetTouches[0])
+    // console.log(ev.targetTouches[0])
     movePaint.curX1 = ev.targetTouches[0].clientX - left
     movePaint.curY1 = ev.targetTouches[0].clientY - top
     // if (touches[0].target.tagName === 'I') {
