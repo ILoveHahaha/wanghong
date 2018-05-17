@@ -119,7 +119,11 @@ window.onload = function () {
     let top = document.getElementsByClassName('title')[0].style.height * 0.9
     currentPaint.curX1 = touches[0].clientX - left
     currentPaint.curY1 = touches[0].clientY - top
-    console.log(ev.targetTouches)
+    // console.log(ev.targetTouches)
+    // console.log(currentPaint.curX1)
+    // console.log(currentPaint.curY1)
+    // console.log(ev.target.offsetLeft)
+    // console.log(ev.target.offsetTop)
     paint.addEventListener('touchmove', function (ev) {
       // console.log(ev.target.tagName)
       if (touches.length === 1) {
@@ -128,9 +132,9 @@ window.onload = function () {
         // currentPaint.curX2 = touches[1].clientX - document.getElementsByClassName('left')[0].style.width
         // currentPaint.curY2 = touches[1].clientY - document.getElementsByClassName('title')[0].style.height * 0.9
         if (touches[0].target.tagName === 'I' && touches[1].target.tagName === 'I') {
-
+          drop(ev, left, top)
         } else if (touches[0].target.tagName === 'P' && touches[1].target.tagName === 'P') {
-
+          drop(ev, left, top)
         }
       }
     })
@@ -207,7 +211,7 @@ window.onload = function () {
   }
   
   // 放大缩小
-  function drop() {
+  function drop(ev, left, top) {
 
   }
   
@@ -218,6 +222,8 @@ window.onload = function () {
     movePaint.curY1 = ev.targetTouches[0].clientY - top
     // if (touches[0].target.tagName === 'I') {
     if (ev.target.nodeName === 'I') {
+      // ev.target.parentNode.style.left = (movePaint.curX1 - ev.target.parentNode.offsetLeft - ev.target.offsetLeft -left) + 'px'
+      // ev.target.parentNode.style.top = (movePaint.curY1 - ev.target.parentNode.offsetTop - ev.target.offsetTop - top) + 'px'
       ev.target.parentNode.style.left = movePaint.curX1 + 'px'
       ev.target.parentNode.style.top = movePaint.curY1 + 'px'
     } else if (ev.target.nodeName === 'P') {
