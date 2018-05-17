@@ -132,9 +132,9 @@ window.onload = function () {
         // currentPaint.curX2 = touches[1].clientX - document.getElementsByClassName('left')[0].style.width
         // currentPaint.curY2 = touches[1].clientY - document.getElementsByClassName('title')[0].style.height * 0.9
         if (touches[0].target.tagName === 'I' && touches[1].target.tagName === 'I') {
-          drop(ev, left, top)
+          drop(ev)
         } else if (touches[0].target.tagName === 'P' && touches[1].target.tagName === 'P') {
-          drop(ev, left, top)
+          drop(ev)
         }
       }
     })
@@ -211,13 +211,17 @@ window.onload = function () {
   }
   
   // 放大缩小
-  function drop(ev, left, top) {
-    console.log(ev.targetTouches)
+  function drop(ev) {
+    let width = ev.targetTouches[0].clientX - ev.targetTouches[1].clientX
+    let height = ev.targetTouches[0].clientY - ev.targetTouches[1].clientY
+    width = width > 0 ? width : -width
+    height = height > 0 ? height : -height
+    // ev.target.style.width =
+    console.log(ev.target.style.width)
   }
   
   // 移动
   function move(ev, left, top) {
-    // console.log(ev.targetTouches[0])
     movePaint.curX1 = ev.targetTouches[0].clientX - left
     movePaint.curY1 = ev.targetTouches[0].clientY - top
     // if (touches[0].target.tagName === 'I') {
