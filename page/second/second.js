@@ -212,7 +212,7 @@ window.onload = function () {
   
   // 放大缩小
   function drop(ev, left, top) {
-
+    console.log(ev.targetTouches)
   }
   
   // 移动
