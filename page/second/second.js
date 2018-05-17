@@ -16,6 +16,7 @@ window.onload = function () {
     curX2: '',
     curY2: ''
   }
+  let currentArray = []
 
   // 上拉框按钮监听
   bottom.onclick = function (ev) {
@@ -216,10 +217,19 @@ window.onload = function () {
     let height = ev.targetTouches[0].clientY - ev.targetTouches[1].clientY
     width = width > 0 ? width : -width
     height = height > 0 ? height : -height
-    ev.target.style.width = (ev.target.clientWidth + width / 10) + 'px'
-    ev.target.style.height = (ev.target.clientHeight + height / 10) + 'px'
+    currentArray.push(width)
+    if (currentArray.length < 2) {
+      return
+    } else {
+      if (currentArray[currentArray.length - 1] > currentArray[currentArray.length - 2]) {
+        ev.target.style.width = (ev.target.clientWidth + width / 10) + 'px'
+        ev.target.style.height = (ev.target.clientHeight + height / 10) + 'px'
+      } else if (currentArray[currentArray.length - 1] < currentArray[currentArray.length - 2]) {
+        ev.target.style.width = (ev.target.clientWidth - width / 10) + 'px'
+        ev.target.style.height = (ev.target.clientHeight - height / 10) + 'px'
+      }
+    }
   }
-  
   // 移动
   function move(ev, left, top) {
     movePaint.curX1 = ev.targetTouches[0].clientX - left
