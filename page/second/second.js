@@ -135,12 +135,12 @@ window.onload = function () {
         if (touches[0].target.tagName === 'I' && touches[1].target.tagName === 'I') {
           drop(ev)
         } else if (touches[0].target.tagName === 'P' && touches[1].target.tagName === 'P') {
-          // drop(ev)
+          romate(ev)
         }
       }
     })
     paint.addEventListener('touchend', function (ev) {
-      
+      currentArray = []
     })
     // console.log(touches[0].target.tagName)
 
@@ -213,8 +213,8 @@ window.onload = function () {
   
   // 放大缩小
   function drop(ev) {
-    let width = ev.targetTouches[0].clientX - ev.targetTouches[1].clientX
-    let height = ev.targetTouches[0].clientY - ev.targetTouches[1].clientY
+    let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
+    let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
     width = width > 0 ? width : -width
     height = height > 0 ? height : -height
     currentArray.push(width)
@@ -247,8 +247,12 @@ window.onload = function () {
   }
   
   // 旋转
-  function romate() {
-    
+  function romate(ev) {
+    let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
+    let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
+    let deg = height / width
+    // ev.target
+    ev.target.style.transform = `rotate(${deg}deg)`
   }
 
   // 下一页
