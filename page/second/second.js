@@ -250,7 +250,7 @@ window.onload = function () {
   function romate(ev) {
     let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
     let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
-    let deg = height / width
+    let deg = height / width * 5
     // ev.target
     ev.target.style.transform = `rotate(${deg}deg)`
   }
