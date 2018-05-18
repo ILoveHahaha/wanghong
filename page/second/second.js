@@ -294,7 +294,9 @@ window.onload = function () {
     let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
     let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
     let deg = height / width * 5
-    if (ev.target.parentNode.className === 'skyIcon') {
+    if (ev.target.parentNode.className === 'skyIcon'
+      || ev.target.parentNode.className === 'mountainIcon'
+      || ev.target.parentNode.className === 'farmIcon') {
       return false
     }
     ev.target.style.transform = `rotate(${deg}deg)`
