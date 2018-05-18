@@ -108,6 +108,7 @@ window.onload = function () {
   // }
   paint.addEventListener('touchstart', function (ev) {
     currentELement = ev
+    borderLine(ev)
     let touches = ev.targetTouches
     let left = document.getElementsByClassName('left')[0].clientWidth
     let top = document.getElementsByClassName('title')[0].clientHeight
@@ -134,6 +135,7 @@ window.onload = function () {
     })
     paint.addEventListener('touchend', function (ev) {
       currentArray = []
+      borderNone(ev)
       if (ev.target.nodeName === 'P') {
         if (ev.target.offsetTop < -50) {
           $('.paint').empty(ev.target)
@@ -253,7 +255,7 @@ window.onload = function () {
       p.style.zIndex = '50'
       p.style.marginTop = '-2.25rem'
       p.style.marginLeft = '-3rem'
-      p.style.border = '1px dashed #CAFF70'
+      // p.style.border = '1px dashed #CAFF70'
       i.style.width = '3rem'
       i.src = `../../img/second/${path}/${name}`
       p.appendChild(i)
@@ -317,6 +319,23 @@ window.onload = function () {
       return false
     }
     ev.target.style.transform = `rotate(${deg}deg)`
+  }
+
+  function borderLine(ev) {
+    if (ev.target.nodeName === 'IMG') {
+      if (ev.target.parentNode.className === 'skyIcon') return false
+      ev.target.parentNode.style.border = '1px dashed #CAFF70'
+    } else if (ev.target.nodeName === 'P') {
+      ev.target.style.border = '1px dashed #CAFF70'
+    }
+  }
+
+  function borderNone(ev) {
+    if (ev.target.nodeName === 'IMG') {
+      ev.target.parentNode.style.border = 'none'
+    } else if (ev.target.nodeName === 'P') {
+      ev.target.style.border = 'none'
+    }
   }
 
   // 下一页
