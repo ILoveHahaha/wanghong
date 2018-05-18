@@ -43,13 +43,6 @@ window.onload = function () {
         selectImg.removeEventListener('touchmove', function () {})
         selectImg.removeEventListener('touchend', function () {})
       }
-      // for (let a of target.parentNode.getElementsByTagName('i')) {
-      //   console.log(a)
-        // a.classList.remove('active')
-        // selectImg.removeEventListener('touchstart', function () {})
-        // selectImg.removeEventListener('touchmove', function () {})
-        // selectImg.removeEventListener('touchend', function () {})
-      // }
       target.classList.add('active')
       if (!clickState.has(targetName)) {
         switch (target.id) {
@@ -87,9 +80,6 @@ window.onload = function () {
       for (let a = 0; a < document.getElementsByClassName('icon').length; a++) {
         document.getElementsByClassName('icon')[a].style.display = 'none'
       }
-      // for (let a of document.getElementsByClassName('icon')) {
-      //   a.style.display = 'none'
-      // }
       document.getElementsByClassName(target.id)[0].style.display = 'flex'
     } else if (target.nodeName === 'IMG' && target.style['0']) {
       let url = target.src.split('second/')[1].split('")')[0].split('/')
@@ -117,15 +107,15 @@ window.onload = function () {
   // }
   paint.addEventListener('touchstart', function (ev) {
     let touches = ev.targetTouches
-    let left = document.getElementsByClassName('left')[0].style.width
-    let top = document.getElementsByClassName('title')[0].style.height * 0.9
+    let left = document.getElementsByClassName('left')[0].clientWidth
+    let top = document.getElementsByClassName('title')[0].clientHeight
     currentPaint.curX1 = touches[0].clientX - left
     currentPaint.curY1 = touches[0].clientY - top
     // console.log(ev.targetTouches)
-    // console.log(currentPaint.curX1)
-    // console.log(currentPaint.curY1)
-    // console.log(ev.target.offsetLeft)
-    // console.log(ev.target.offsetTop)
+    console.log(currentPaint.curX1)
+    console.log(currentPaint.curY1)
+    console.log(ev.target.offsetLeft)
+    console.log(ev.target.offsetTop)
     paint.addEventListener('touchmove', function (ev) {
       // console.log(ev.target.tagName)
       if (touches.length === 1) {
@@ -159,8 +149,6 @@ window.onload = function () {
         i.style.width = '7rem'
       }
       i.src = `../../img/second/${targetName}/${i.name}.png`
-      // i.style.background = `url(../../img/second/${targetName}/${i.name}.png`
-      // i.style.backgroundSize = '100% 100%'
       document.getElementsByClassName(targetName)[0].appendChild(i)
     }
   }
@@ -195,51 +183,36 @@ window.onload = function () {
   // 画图
   function drawImage({0: path, 1: name}) {
     let selectIcon = document.querySelectorAll(`.${path}Icon`)
-    // if (path === 'sky' || path === 'farm') {
     if (path === 'sky') {
       if (selectIcon.length > 0) {
         selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
-        // selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
-        // selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
       } else {
         let p = document.createElement('p')
         let i = document.createElement('img')
         p.className = `${path}Icon`
+        p.style.zIndex = '10'
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.top = '-0.4rem'
         p.style.left = '0'
-        // i.style.height = '12.236rem'
         i.style.width = '17.48rem'
         i.src = `../../img/second/${path}/${name}`
-        // p.style.marginTop = '-2.25rem'
-        // p.style.marginLeft = '-3rem'
-        // p.style.border = '1px dashed #CAFF70'
-        // i.style.background = `url(../../img/second/${path}/${name}`
-        // i.style.backgroundSize = '100% 100%'
         p.appendChild(i)
         paint.appendChild(p)
       }
     } else if (path === 'mountain') {
       if (selectIcon.length > 0) {
         selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
-        // selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
-        // selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
       } else {
         let p = document.createElement('p')
         let i = document.createElement('img')
         p.className = `${path}Icon`
+        p.style.zIndex = '20'
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.bottom = '5.43rem'
         p.style.left = '0'
-        // i.style.height = '5.83rem'
         i.style.width = '17.48rem'
-        // p.style.marginTop = '-2.25rem'
-        // p.style.marginLeft = '-3rem'
-        // p.style.border = '1px dashed #CAFF70'
-        // i.style.background = `url(../../img/second/${path}/${name}`
-        // i.style.backgroundSize = '100% 100%'
         i.src = `../../img/second/${path}/${name}`
         p.appendChild(i)
         paint.appendChild(p)
@@ -247,23 +220,17 @@ window.onload = function () {
     } else if (path === 'farm') {
       if (selectIcon.length > 0) {
         selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
-        // selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
-        // selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
       } else {
         let p = document.createElement('p')
         let i = document.createElement('img')
         p.className = `${path}Icon`
+        p.style.zIndex = '20'
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.bottom = '0'
         p.style.left = '0'
         i.style.width = '17.48rem'
         i.src = `../../img/second/${path}/${name}`
-        // p.style.marginTop = '-2.25rem'
-        // p.style.marginLeft = '-3rem'
-        // p.style.border = '1px dashed #CAFF70'
-        // i.style.background = `url(../../img/second/${path}/${name}`
-        // i.style.backgroundSize = '100% 100%'
         p.appendChild(i)
         paint.appendChild(p)
       }
@@ -271,18 +238,13 @@ window.onload = function () {
       let p = document.createElement('p')
       let i = document.createElement('img')
       p.className = `${path}Icon`
-      // p.style.padding = '0'
-      // p.style.border = 'none'
       p.style.top = '50%'
-      // p.style.left = '0'
+      p.style.zIndex = '50'
       p.style.marginTop = '-2.25rem'
       p.style.marginLeft = '-3rem'
       p.style.border = '1px dashed #CAFF70'
-      // i.style.height = '2.5rem'
       i.style.width = '3rem'
       i.src = `../../img/second/${path}/${name}`
-      // i.style.background = `url(../../img/second/${path}/${name}`
-      // i.style.backgroundSize = '100% 100%'
       p.appendChild(i)
       paint.appendChild(p)
     }
@@ -302,22 +264,20 @@ window.onload = function () {
       return
     } else {
       if (currentArray[currentArray.length - 1] > currentArray[currentArray.length - 2]) {
-        ev.target.style.width = (ev.target.clientWidth + width / 10) + 'px'
-        ev.target.style.height = (ev.target.clientHeight + height / 10) + 'px'
+        ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth + width / 10)) + 'px'
+        ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
       } else if (currentArray[currentArray.length - 1] < currentArray[currentArray.length - 2]) {
-        ev.target.style.width = (ev.target.clientWidth - width / 10) + 'px'
-        ev.target.style.height = (ev.target.clientHeight - height / 10) + 'px'
+        ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth + width / 10)) + 'px'
+        ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
       }
     }
   }
   // 移动
   function move(ev, left, top) {
-    movePaint.curX1 = ev.targetTouches[0].clientX - left
+    console.log(left)
+    movePaint.curX1 = ev.targetTouches[0].clientX - left / 2
     movePaint.curY1 = ev.targetTouches[0].clientY - top
-    // if (touches[0].target.tagName === 'I') {
     if (ev.target.nodeName === 'IMG') {
-      // ev.target.parentNode.style.left = (movePaint.curX1 - ev.target.parentNode.offsetLeft - ev.target.offsetLeft -left) + 'px'
-      // ev.target.parentNode.style.top = (movePaint.curY1 - ev.target.parentNode.offsetTop - ev.target.offsetTop - top) + 'px'
       if (ev.target.parentNode.className === 'skyIcon') {
         return false
       }
@@ -334,7 +294,6 @@ window.onload = function () {
     let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
     let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
     let deg = height / width * 5
-    // ev.target
     if (ev.target.parentNode.className === 'skyIcon') {
       return false
     }
