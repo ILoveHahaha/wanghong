@@ -91,8 +91,9 @@ window.onload = function () {
       //   a.style.display = 'none'
       // }
       document.getElementsByClassName(target.id)[0].style.display = 'flex'
-    } else if (target.nodeName === 'I' && target.style['0']) {
-      let url = target.style.backgroundImage.split('second/')[1].split('")')[0].split('/')
+    } else if (target.nodeName === 'IMG' && target.style['0']) {
+      let url = target.src.split('second/')[1].split('")')[0].split('/')
+      // let url = target.style.backgroundImage.split('second/')[1].split('")')[0].split('/')
       drawImage(url)
     } else if (target.nodeName === 'I' && target.name) {
       switch (target.name) {
