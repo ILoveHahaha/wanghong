@@ -294,12 +294,12 @@ window.onload = function () {
   
   // 旋转
   function romate(ev) {
-    if (ev.target.nodeName === 'IMG') {
+    if (ev.target.nodeName === 'IMG' || ev.target.nodeName === 'DIV') {
       return false
     }
     let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
     let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
-    let deg = height / width * 5
+    let deg = height / width * 2
     if (ev.target.parentNode.className === 'skyIcon'
       || ev.target.parentNode.className === 'mountainIcon'
       || ev.target.parentNode.className === 'farmIcon') {
