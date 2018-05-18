@@ -294,6 +294,9 @@ window.onload = function () {
   
   // 旋转
   function romate(ev) {
+    if (ev.target.nodeName === 'IMG') {
+      return false
+    }
     let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
     let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
     let deg = height / width * 5
