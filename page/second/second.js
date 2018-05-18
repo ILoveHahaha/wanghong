@@ -255,6 +255,9 @@ window.onload = function () {
     if (ev.target.parentNode.className === 'skyIcon') {
       return false
     }
+    if (ev.target.nodeName === 'P') {
+      return false
+    }
     let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
     // let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
     width = width > 0 ? width : -width
