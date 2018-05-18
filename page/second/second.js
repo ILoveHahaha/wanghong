@@ -123,7 +123,7 @@ window.onload = function () {
       } else if (touches.length === 2) {
         // currentPaint.curX2 = touches[1].clientX - document.getElementsByClassName('left')[0].style.width
         // currentPaint.curY2 = touches[1].clientY - document.getElementsByClassName('title')[0].style.height * 0.9
-        if (touches[0].target.tagName === 'I' && touches[1].target.tagName === 'I') {
+        if (touches[0].target.tagName === 'IMG' && touches[1].target.tagName === 'IMG') {
           drop(ev)
         } else if (touches[0].target.tagName === 'P' && touches[1].target.tagName === 'P') {
           romate(ev)
