@@ -269,7 +269,6 @@ window.onload = function () {
   
   // 放大缩小
   function drop(ev) {
-    console.log(ev.target.nodeName)
     if (ev.target.parentNode.className === 'skyIcon') {
       return false
     }
@@ -284,6 +283,7 @@ window.onload = function () {
     if (currentArray.length < 2) {
       return
     } else {
+      console.log(ev.target.nodeName)
       if (currentArray[currentArray.length - 1] > currentArray[currentArray.length - 2]) {
         ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth + width / 10)) + 'px'
         // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
