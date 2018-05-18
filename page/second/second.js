@@ -122,7 +122,6 @@ window.onload = function () {
     paint.addEventListener('touchmove', function (ev) {
       // console.log(ev.target.tagName)
       if (touches.length === 1) {
-        console.log(left, top)
         move(ev, left, top)
       } else if (touches.length === 2) {
         // currentPaint.curX2 = touches[1].clientX - document.getElementsByClassName('left')[0].style.width
@@ -283,7 +282,6 @@ window.onload = function () {
     if (currentArray.length < 2) {
       return
     } else {
-      console.log(ev.target.nodeName)
       if (currentArray[currentArray.length - 1] > currentArray[currentArray.length - 2]) {
         ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth + width / 10)) + 'px'
         // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
@@ -291,6 +289,7 @@ window.onload = function () {
         ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth - width / 10)) + 'px'
         // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
       }
+      console.log(ev.target.style.width)
     }
   }
   // 移动
