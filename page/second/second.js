@@ -112,10 +112,10 @@ window.onload = function () {
     currentPaint.curX1 = touches[0].clientX - left
     currentPaint.curY1 = touches[0].clientY - top
     // console.log(ev.targetTouches)
-    console.log(currentPaint.curX1)
-    console.log(currentPaint.curY1)
-    console.log(ev.target.offsetLeft)
-    console.log(ev.target.offsetTop)
+    // console.log(currentPaint.curX1)
+    // console.log(currentPaint.curY1)
+    // console.log(ev.target.offsetLeft)
+    // console.log(ev.target.offsetTop)
     paint.addEventListener('touchmove', function (ev) {
       // console.log(ev.target.tagName)
       if (touches.length === 1) {
@@ -274,7 +274,7 @@ window.onload = function () {
   }
   // 移动
   function move(ev, left, top) {
-    console.log(left)
+    // console.log(left)
     movePaint.curX1 = ev.targetTouches[0].clientX - left / 2
     movePaint.curY1 = ev.targetTouches[0].clientY - top
     if (ev.target.nodeName === 'IMG') {
