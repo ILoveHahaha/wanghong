@@ -59,11 +59,11 @@ window.onload = function () {
             break;
           case 'mountain':
             createIcon(targetName, 15)
-            scrollIcon(targetName, -84.52)
+            scrollIcon(targetName, -94.52)
             break;
           case 'farm':
             createIcon(targetName, 11)
-            scrollIcon(targetName, -54.52)
+            scrollIcon(targetName, -94.52)
             break;
           case 'decoration':
             createIcon(targetName, 15)
@@ -150,10 +150,16 @@ window.onload = function () {
   // 动态创建元素
   function createIcon(targetName, num) {
     for (let a = 1; a <= num; a++) {
-      let i = document.createElement('i')
+      let i = document.createElement('img')
       i.name = `${targetName}${a}`
-      i.style.background = `url(../../img/second/${targetName}/${i.name}.png`
-      i.style.backgroundSize = '100% 100%'
+      i.style.height = '4rem'
+      if (targetName === 'mountain' || targetName === 'farm') {
+        i.style.height = '3rem'
+        i.style.width = '7rem'
+      }
+      i.src = `../../img/second/${targetName}/${i.name}.png`
+      // i.style.background = `url(../../img/second/${targetName}/${i.name}.png`
+      // i.style.backgroundSize = '100% 100%'
       document.getElementsByClassName(targetName)[0].appendChild(i)
     }
   }
@@ -191,51 +197,78 @@ window.onload = function () {
     // if (path === 'sky' || path === 'farm') {
     if (path === 'sky') {
       if (selectIcon.length > 0) {
-        selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
-        selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
+        selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
+        // selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
+        // selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
       } else {
         let p = document.createElement('p')
-        let i = document.createElement('i')
+        let i = document.createElement('img')
         p.className = `${path}Icon`
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.top = '-0.4rem'
         p.style.left = '0'
-        i.style.height = '12.236rem'
+        // i.style.height = '12.236rem'
         i.style.width = '17.48rem'
+        i.src = `../../img/second/${path}/${name}`
         // p.style.marginTop = '-2.25rem'
         // p.style.marginLeft = '-3rem'
         // p.style.border = '1px dashed #CAFF70'
-        i.style.background = `url(../../img/second/${path}/${name}`
-        i.style.backgroundSize = '100% 100%'
+        // i.style.background = `url(../../img/second/${path}/${name}`
+        // i.style.backgroundSize = '100% 100%'
         p.appendChild(i)
         paint.appendChild(p)
       }
-    } else if (path === 'mountain' || path === 'farm') {
+    } else if (path === 'mountain') {
       if (selectIcon.length > 0) {
-        selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
-        selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
+        selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
+        // selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
+        // selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
       } else {
         let p = document.createElement('p')
-        let i = document.createElement('i')
+        let i = document.createElement('img')
         p.className = `${path}Icon`
         p.style.padding = '0'
         p.style.border = 'none'
-        p.style.bottom = '-0.4rem'
+        p.style.bottom = '5.43rem'
         p.style.left = '0'
-        i.style.height = '5.83rem'
+        // i.style.height = '5.83rem'
         i.style.width = '17.48rem'
         // p.style.marginTop = '-2.25rem'
         // p.style.marginLeft = '-3rem'
         // p.style.border = '1px dashed #CAFF70'
-        i.style.background = `url(../../img/second/${path}/${name}`
-        i.style.backgroundSize = '100% 100%'
+        // i.style.background = `url(../../img/second/${path}/${name}`
+        // i.style.backgroundSize = '100% 100%'
+        i.src = `../../img/second/${path}/${name}`
+        p.appendChild(i)
+        paint.appendChild(p)
+      }
+    } else if (path === 'farm') {
+      if (selectIcon.length > 0) {
+        selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
+        // selectIcon[0].childNodes[0].style.background = `url(../../img/second/${path}/${name}`
+        // selectIcon[0].childNodes[0].style.backgroundSize = '100% 100%'
+      } else {
+        let p = document.createElement('p')
+        let i = document.createElement('img')
+        p.className = `${path}Icon`
+        p.style.padding = '0'
+        p.style.border = 'none'
+        p.style.bottom = '0'
+        p.style.left = '0'
+        i.style.width = '17.48rem'
+        i.src = `../../img/second/${path}/${name}`
+        // p.style.marginTop = '-2.25rem'
+        // p.style.marginLeft = '-3rem'
+        // p.style.border = '1px dashed #CAFF70'
+        // i.style.background = `url(../../img/second/${path}/${name}`
+        // i.style.backgroundSize = '100% 100%'
         p.appendChild(i)
         paint.appendChild(p)
       }
     } else {
       let p = document.createElement('p')
-      let i = document.createElement('i')
+      let i = document.createElement('img')
       p.className = `${path}Icon`
       // p.style.padding = '0'
       // p.style.border = 'none'
@@ -244,10 +277,11 @@ window.onload = function () {
       p.style.marginTop = '-2.25rem'
       p.style.marginLeft = '-3rem'
       p.style.border = '1px dashed #CAFF70'
-      i.style.height = '2.5rem'
+      // i.style.height = '2.5rem'
       i.style.width = '3rem'
-      i.style.background = `url(../../img/second/${path}/${name}`
-      i.style.backgroundSize = '100% 100%'
+      i.src = `../../img/second/${path}/${name}`
+      // i.style.background = `url(../../img/second/${path}/${name}`
+      // i.style.backgroundSize = '100% 100%'
       p.appendChild(i)
       paint.appendChild(p)
     }
@@ -280,7 +314,7 @@ window.onload = function () {
     movePaint.curX1 = ev.targetTouches[0].clientX - left
     movePaint.curY1 = ev.targetTouches[0].clientY - top
     // if (touches[0].target.tagName === 'I') {
-    if (ev.target.nodeName === 'I') {
+    if (ev.target.nodeName === 'IMG') {
       // ev.target.parentNode.style.left = (movePaint.curX1 - ev.target.parentNode.offsetLeft - ev.target.offsetLeft -left) + 'px'
       // ev.target.parentNode.style.top = (movePaint.curY1 - ev.target.parentNode.offsetTop - ev.target.offsetTop - top) + 'px'
       if (ev.target.parentNode.className === 'skyIcon') {
