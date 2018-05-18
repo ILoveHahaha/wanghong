@@ -291,7 +291,7 @@ window.onload = function () {
         // ev.target.style.width = ((ev.target.clientWidth - width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth - width / 10)) + 'px'
         // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
       }
-      console.log(ev.target.style.width)
+      // console.log(ev.target.style.width)
     }
   }
   // 移动
@@ -350,6 +350,13 @@ window.onload = function () {
     document.getElementsByClassName('write')[0].style.display = 'block'
     document.getElementsByClassName('bottom')[0].style.display = 'none'
     document.getElementsByTagName('textarea')[0].value = '请输入你对乡村的一句话。'
+    let div = document.createElement('div')
+    div.style.width = '17.48rem'
+    div.style.height = '17.5rem'
+    div.style.zIndex = '100'
+    div.style.top = '1.8rem'
+    div.style.position = 'absolute'
+    document.getElementsByClassName('secondContain')[0].appendChild(div)
   }
 
   // 输入留言
