@@ -122,6 +122,7 @@ window.onload = function () {
     paint.addEventListener('touchmove', function (ev) {
       // console.log(ev.target.tagName)
       if (touches.length === 1) {
+        console.log(left, top)
         move(ev, left, top)
       } else if (touches.length === 2) {
         // currentPaint.curX2 = touches[1].clientX - document.getElementsByClassName('left')[0].style.width
@@ -143,6 +144,7 @@ window.onload = function () {
       } else if (ev.target.nodeName === 'IMG') {
         if (ev.target.parentNode.offsetTop < -50) {
           $('.paint').empty(ev.target.parentNode)
+          console.log(ev.target.parentNode)
         }
       }
     })
@@ -224,7 +226,8 @@ window.onload = function () {
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.bottom = '5.43rem'
-        p.style.left = '0'
+        p.style.left = '50%'
+        p.style.marginLeft = '-8.74rem'
         i.style.width = '17.48rem'
         i.src = `../../img/second/${path}/${name}`
         p.appendChild(i)
@@ -241,7 +244,8 @@ window.onload = function () {
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.bottom = '0'
-        p.style.left = '0'
+        p.style.left = '50%'
+        p.style.marginLeft = '-8.74rem'
         i.style.width = '17.48rem'
         i.src = `../../img/second/${path}/${name}`
         p.appendChild(i)
@@ -290,9 +294,9 @@ window.onload = function () {
   }
   // 移动
   function move(ev, left, top) {
-    // console.log(left)
     movePaint.curX1 = ev.targetTouches[0].clientX - left / 2
     movePaint.curY1 = ev.targetTouches[0].clientY - top
+    // console.log(movePaint.curX1, movePaint.curY1)
     if (ev.target.nodeName === 'IMG') {
       if (ev.target.parentNode.className === 'skyIcon') {
         return false
