@@ -256,19 +256,19 @@ window.onload = function () {
       return false
     }
     let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
-    let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
+    // let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
     width = width > 0 ? width : -width
-    height = height > 0 ? height : -height
+    // height = height > 0 ? height : -height
     currentArray.push(width)
     if (currentArray.length < 2) {
       return
     } else {
       if (currentArray[currentArray.length - 1] > currentArray[currentArray.length - 2]) {
         ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth + width / 10)) + 'px'
-        ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
+        // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
       } else if (currentArray[currentArray.length - 1] < currentArray[currentArray.length - 2]) {
         ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth + width / 10)) + 'px'
-        ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
+        // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
       }
     }
   }
