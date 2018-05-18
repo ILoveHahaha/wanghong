@@ -269,6 +269,7 @@ window.onload = function () {
   
   // 放大缩小
   function drop(ev) {
+    console.log(ev.target.nodeName)
     if (ev.target.parentNode.className === 'skyIcon') {
       return false
     }
