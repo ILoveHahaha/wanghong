@@ -17,6 +17,7 @@ window.onload = function () {
     curY2: ''
   }
   let currentArray = []
+  let currentELement = ''
 
   // 上拉框按钮监听
   bottom.onclick = function (ev) {
@@ -106,6 +107,7 @@ window.onload = function () {
   //   let target = ev.target
   // }
   paint.addEventListener('touchstart', function (ev) {
+    currentELement = ev
     let touches = ev.targetTouches
     let left = document.getElementsByClassName('left')[0].clientWidth
     let top = document.getElementsByClassName('title')[0].clientHeight
@@ -132,6 +134,15 @@ window.onload = function () {
     })
     paint.addEventListener('touchend', function (ev) {
       currentArray = []
+      if (ev.target.nodeName === 'P') {
+        if (ev.target.offsetTop < -50) {
+          $('.paint').empty(ev.target)
+        }
+      } else if (ev.target.nodeName === 'IMG') {
+        if (ev.target.parentNode.offsetTop < -50) {
+          $('.paint').empty(ev.target.parentNode)
+        }
+      }
     })
     // console.log(touches[0].target.tagName)
 
