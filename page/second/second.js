@@ -122,7 +122,7 @@ window.onload = function () {
     // console.log(ev.target.offsetLeft)
     // console.log(ev.target.offsetTop)
     if (ev.target.nodeName === 'IMG' || ev.target.parentNode.className !== 'skyIcon') {
-      ev.target.parentNode.style.zIndex += 1
+      ev.target.parentNode.style.zIndex = parseInt(ev.target.parentNode.style.zIndex) + 10
     }
     paint.addEventListener('touchmove', function (ev) {
       move(ev, left, top)
@@ -212,7 +212,7 @@ window.onload = function () {
         let p = document.createElement('p')
         let i = document.createElement('img')
         p.className = `${path}Icon`
-        p.style.zIndex = '10'
+        // p.style.zIndex = '10'
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.top = '-0.4rem'
@@ -224,14 +224,14 @@ window.onload = function () {
       }
     } else if (path === 'mountain') {
       if (selectIcon.length > 0) {
-        selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
+        selectIcon[0].childNodes[1].src = `../../img/second/${path}/${name}`
       } else {
         let p = document.createElement('p')
         let img = document.createElement('img')
         let i = document.createElement('i')
         i.className = 'zoom'
         p.className = `${path}Icon`
-        p.style.zIndex = '20'
+        // p.style.zIndex = '20'
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.bottom = '5.43rem'
@@ -245,14 +245,14 @@ window.onload = function () {
       }
     } else if (path === 'farm') {
       if (selectIcon.length > 0) {
-        selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
+        selectIcon[0].childNodes[1].src = `../../img/second/${path}/${name}`
       } else {
         let p = document.createElement('p')
         let img = document.createElement('img')
         let i = document.createElement('i')
         i.className = 'zoom'
         p.className = `${path}Icon`
-        p.style.zIndex = '20'
+        // p.style.zIndex = '20'
         p.style.padding = '0'
         p.style.border = 'none'
         p.style.bottom = '0'
@@ -271,7 +271,7 @@ window.onload = function () {
       let i2 = document.createElement('i')
       p.className = `${path}Icon`
       p.style.top = '50%'
-      p.style.zIndex = '50'
+      // p.style.zIndex = '50'
       p.style.marginTop = '-2.25rem'
       p.style.marginLeft = '-3rem'
       // p.style.border = '1px dashed #CAFF70'
@@ -288,7 +288,9 @@ window.onload = function () {
   
   // 放大缩小
   function drop(ev) {
-    if (ev.target.parentNode.className === 'skyIcon' || ev.target.className !== 'zoom') {
+    if (ev.target.parentNode.className === 'skyIcon') {
+      return false
+    } else if (ev.target.className !== 'zoom') {
       return false
     } else {
       let width
@@ -331,7 +333,9 @@ window.onload = function () {
   
   // 旋转
   function rotate(ev) {
-    if (ev.target.nodeName === 'IMG' || ev.target.nodeName === 'DIV' || ev.target.className !== 'rotate') {
+    if (ev.target.nodeName === 'IMG' || ev.target.nodeName === 'DIV') {
+      return false
+    } else if (ev.target.className !== 'rotate') {
       return false
     } else {
       if (ev.target.parentNode.className === 'skyIcon'
@@ -378,7 +382,7 @@ window.onload = function () {
     let div = document.createElement('div')
     div.style.width = '17.48rem'
     div.style.height = '17.5rem'
-    div.style.zIndex = '100'
+    // div.style.zIndex = '100'
     div.style.top = '1.8rem'
     div.style.position = 'absolute'
     document.getElementsByClassName('secondContain')[0].appendChild(div)
