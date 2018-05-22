@@ -363,4 +363,8 @@ window.onload = function () {
   document.getElementsByTagName('textarea')[0].onclick = function () {
     this.value = ''
   }
+
+  document.getElementsByClassName('goback')[0].onclick = function () {
+    location.href = 'http://119.29.157.202:8080/hongjie/wanghong/wanghong/page/index/index.html'
+  }
 }
