@@ -18,6 +18,8 @@ window.onload = function () {
   }
   let currentArray = []
   let currentELement = ''
+  let primaryZoomPoint = ''
+  let primaryRotatePoint = {}
 
   // 上拉框按钮监听
   bottom.onclick = function (ev) {
@@ -119,19 +121,25 @@ window.onload = function () {
     // console.log(currentPaint.curY1)
     // console.log(ev.target.offsetLeft)
     // console.log(ev.target.offsetTop)
+    if (ev.target.nodeName === 'IMG' || ev.target.parentNode.className !== 'skyIcon') {
+      ev.target.parentNode.style.zIndex += 1
+    }
     paint.addEventListener('touchmove', function (ev) {
+      move(ev, left, top)
+      drop(ev)
+      rotate(ev)
       // console.log(ev.target.tagName)
-      if (touches.length === 1) {
-        move(ev, left, top)
-      } else if (touches.length === 2) {
-        // currentPaint.curX2 = touches[1].clientX - document.getElementsByClassName('left')[0].style.width
-        // currentPaint.curY2 = touches[1].clientY - document.getElementsByClassName('title')[0].style.height * 0.9
-        if (touches[0].target.tagName === 'IMG' && touches[1].target.tagName === 'IMG') {
-          drop(ev)
-        } else if (touches[0].target.tagName === 'P' && touches[1].target.tagName === 'P') {
-          romate(ev)
-        }
-      }
+      // if (touches.length === 1) {
+      //   move(ev, left, top)
+      // } else if (touches.length === 2) {
+      //   // currentPaint.curX2 = touches[1].clientX - document.getElementsByClassName('left')[0].style.width
+      //   // currentPaint.curY2 = touches[1].clientY - document.getElementsByClassName('title')[0].style.height * 0.9
+      //   if (touches[0].target.tagName === 'IMG' && touches[1].target.tagName === 'IMG') {
+      //     // drop(ev)
+      //   } else if (touches[0].target.tagName === 'P' && touches[1].target.tagName === 'P') {
+      //     // rotate(ev)
+      //   }
+      // }
     })
     paint.addEventListener('touchend', function (ev) {
       currentArray = []
@@ -219,7 +227,9 @@ window.onload = function () {
         selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
       } else {
         let p = document.createElement('p')
-        let i = document.createElement('img')
+        let img = document.createElement('img')
+        let i = document.createElement('i')
+        i.className = 'zoom'
         p.className = `${path}Icon`
         p.style.zIndex = '20'
         p.style.padding = '0'
@@ -227,9 +237,10 @@ window.onload = function () {
         p.style.bottom = '5.43rem'
         p.style.left = '50%'
         p.style.marginLeft = '-8.74rem'
-        i.style.width = '17.48rem'
-        i.src = `../../img/second/${path}/${name}`
+        img.style.width = '17.48rem'
+        img.src = `../../img/second/${path}/${name}`
         p.appendChild(i)
+        p.appendChild(img)
         paint.appendChild(p)
       }
     } else if (path === 'farm') {
@@ -237,7 +248,9 @@ window.onload = function () {
         selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
       } else {
         let p = document.createElement('p')
-        let i = document.createElement('img')
+        let img = document.createElement('img')
+        let i = document.createElement('i')
+        i.className = 'zoom'
         p.className = `${path}Icon`
         p.style.zIndex = '20'
         p.style.padding = '0'
@@ -245,60 +258,65 @@ window.onload = function () {
         p.style.bottom = '0'
         p.style.left = '50%'
         p.style.marginLeft = '-8.74rem'
-        i.style.width = '17.48rem'
-        i.src = `../../img/second/${path}/${name}`
+        img.style.width = '17.48rem'
+        img.src = `../../img/second/${path}/${name}`
         p.appendChild(i)
+        p.appendChild(img)
         paint.appendChild(p)
       }
     } else {
       let p = document.createElement('p')
-      let i = document.createElement('img')
+      let img = document.createElement('img')
+      let i1 = document.createElement('i')
+      let i2 = document.createElement('i')
       p.className = `${path}Icon`
       p.style.top = '50%'
       p.style.zIndex = '50'
       p.style.marginTop = '-2.25rem'
       p.style.marginLeft = '-3rem'
       // p.style.border = '1px dashed #CAFF70'
-      i.style.width = '3rem'
-      i.src = `../../img/second/${path}/${name}`
-      p.appendChild(i)
+      i1.className = 'rotate'
+      i2.className = 'zoom'
+      img.style.width = '3rem'
+      img.src = `../../img/second/${path}/${name}`
+      p.appendChild(i1)
+      p.appendChild(i2)
+      p.appendChild(img)
       paint.appendChild(p)
     }
   }
   
   // 放大缩小
   function drop(ev) {
-    if (ev.target.parentNode.className === 'skyIcon') {
+    if (ev.target.parentNode.className === 'skyIcon' || ev.target.className !== 'zoom') {
       return false
-    }
-    if (ev.target.nodeName === 'P') {
-      return false
-    }
-    let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
-    // let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
-    width = width > 0 ? width : -width
-    // height = height > 0 ? height : -height
-    currentArray.push(width)
-    if (currentArray.length < 2) {
-      return
     } else {
-      if (currentArray[currentArray.length - 1] > currentArray[currentArray.length - 2]) {
-        ev.target.style.width = (ev.target.clientWidth + width / 10) + 'px'
-        // ev.target.style.width = ((ev.target.clientWidth + width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth + width / 10)) + 'px'
-        // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
-      } else if (currentArray[currentArray.length - 1] < currentArray[currentArray.length - 2]) {
-        ev.target.style.width = (ev.target.clientWidth - width / 10) + 'px'
-        // ev.target.style.width = ((ev.target.clientWidth - width / 10) > paint.clientWidth ? paint.clientWidth : (ev.target.clientWidth - width / 10)) + 'px'
-        // ev.target.style.height = ((ev.target.clientHeight + height / 10) >paint.clientHeight ? paint.clientHeight : (ev.target.clientHeight + height / 10)) + 'px'
+      let width
+      if (primaryZoomPoint !== '') {
+        width = ev.targetTouches[0].clientX - primaryZoomPoint
+        let img = ev.target.parentNode.getElementsByTagName('img')[0]
+        img.style.width = (img.clientWidth + width) + 'px'
       }
-      // console.log(ev.target.style.width)
+      primaryZoomPoint = ev.targetTouches[0].clientX
     }
   }
   // 移动
   function move(ev, left, top) {
+    if (ev.target.nodeName === 'IMG') {
+        if (ev.target.parentNode.className === 'skyIcon') {
+          return false
+        }
+    }
+    // if (movePaint.x) {
+    //   let width = ev.targetTouches[0].clientX - movePaint.x
+    //   let height = ev.targetTouches[0].clientY - movePaint.y
+    // }
+    // movePaint.x = ev.targetTouches[0].clientX
+    // movePaint.y = ev.targetTouches[0].clientY
+
+
     movePaint.curX1 = ev.targetTouches[0].clientX - left / 2
     movePaint.curY1 = ev.targetTouches[0].clientY - top
-    // console.log(movePaint.curX1, movePaint.curY1)
     if (ev.target.nodeName === 'IMG') {
       if (ev.target.parentNode.className === 'skyIcon') {
         return false
@@ -312,19 +330,26 @@ window.onload = function () {
   }
   
   // 旋转
-  function romate(ev) {
-    if (ev.target.nodeName === 'IMG' || ev.target.nodeName === 'DIV') {
+  function rotate(ev) {
+    if (ev.target.nodeName === 'IMG' || ev.target.nodeName === 'DIV' || ev.target.className !== 'rotate') {
       return false
+    } else {
+      if (ev.target.parentNode.className === 'skyIcon'
+        || ev.target.parentNode.className === 'mountainIcon'
+        || ev.target.parentNode.className === 'farmIcon') {
+        return false
+      }
+      if (primaryRotatePoint.x) {
+        let width = ev.targetTouches[0].clientX - primaryRotatePoint.x
+        let height = ev.targetTouches[0].clientY - primaryRotatePoint.y
+        let deg = 180 / (Math.PI) * Math.atan2(height, width)
+        console.log(deg)
+        ev.target.parentNode.style.transform = `rotate(${deg}deg)`
+
+      }
+      primaryRotatePoint.x = ev.targetTouches[0].clientX
+      primaryRotatePoint.y = ev.targetTouches[0].clientY
     }
-    let width = ev.targetTouches[0].pageX - ev.targetTouches[1].pageX
-    let height = ev.targetTouches[0].pageY - ev.targetTouches[1].pageY
-    let deg = height / width * 2
-    if (ev.target.parentNode.className === 'skyIcon'
-      || ev.target.parentNode.className === 'mountainIcon'
-      || ev.target.parentNode.className === 'farmIcon') {
-      return false
-    }
-    ev.target.style.transform = `rotate(${deg}deg)`
   }
 
   function borderLine(ev) {
