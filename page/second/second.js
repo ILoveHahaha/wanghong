@@ -109,6 +109,7 @@ window.onload = function () {
   //   let target = ev.target
   // }
   paint.addEventListener('touchstart', function (ev) {
+    deleteElement(ev)
     currentELement = ev
     borderLine(ev)
     let touches = ev.targetTouches
@@ -127,7 +128,7 @@ window.onload = function () {
     paint.addEventListener('touchmove', function (ev) {
       move(ev, left, top)
       drop(ev)
-      rotate(ev)
+      // rotate(ev)
       // console.log(ev.target.tagName)
       // if (touches.length === 1) {
       //   move(ev, left, top)
@@ -201,13 +202,20 @@ window.onload = function () {
       })
     })
   }
+
+  function deleteElement(ev) {
+    if (ev.target.className === 'delete') {
+      ev.target.parentNode.style.display = 'none'
+    }
+  }
   
   // 画图
   function drawImage({0: path, 1: name}) {
     let selectIcon = document.querySelectorAll(`.${path}Icon`)
+    let deleteIcon = document.createElement('i')
     if (path === 'sky') {
       if (selectIcon.length > 0) {
-        selectIcon[0].childNodes[0].src = `../../img/second/${path}/${name}`
+        selectIcon[0].childNodes[1].src = `../../img/second/${path}/${name}`
       } else {
         let p = document.createElement('p')
         let i = document.createElement('img')
@@ -219,12 +227,14 @@ window.onload = function () {
         p.style.left = '0'
         i.style.width = '17.48rem'
         i.src = `../../img/second/${path}/${name}`
+        deleteIcon.className = 'delete'
+        p.appendChild(deleteIcon)
         p.appendChild(i)
         paint.appendChild(p)
       }
     } else if (path === 'mountain') {
       if (selectIcon.length > 0) {
-        selectIcon[0].childNodes[1].src = `../../img/second/${path}/${name}`
+        selectIcon[0].childNodes[2].src = `../../img/second/${path}/${name}`
       } else {
         let p = document.createElement('p')
         let img = document.createElement('img')
@@ -240,12 +250,14 @@ window.onload = function () {
         img.style.width = '17.48rem'
         img.src = `../../img/second/${path}/${name}`
         p.appendChild(i)
+        deleteIcon.className = 'delete'
+        p.appendChild(deleteIcon)
         p.appendChild(img)
         paint.appendChild(p)
       }
     } else if (path === 'farm') {
       if (selectIcon.length > 0) {
-        selectIcon[0].childNodes[1].src = `../../img/second/${path}/${name}`
+        selectIcon[0].childNodes[2].src = `../../img/second/${path}/${name}`
       } else {
         let p = document.createElement('p')
         let img = document.createElement('img')
@@ -261,13 +273,15 @@ window.onload = function () {
         img.style.width = '17.48rem'
         img.src = `../../img/second/${path}/${name}`
         p.appendChild(i)
+        deleteIcon.className = 'delete'
+        p.appendChild(deleteIcon)
         p.appendChild(img)
         paint.appendChild(p)
       }
     } else {
       let p = document.createElement('p')
       let img = document.createElement('img')
-      let i1 = document.createElement('i')
+      // let i1 = document.createElement('i')
       let i2 = document.createElement('i')
       p.className = `${path}Icon`
       p.style.top = '50%'
@@ -275,12 +289,14 @@ window.onload = function () {
       p.style.marginTop = '-2.25rem'
       p.style.marginLeft = '-3rem'
       // p.style.border = '1px dashed #CAFF70'
-      i1.className = 'rotate'
+      // i1.className = 'rotate'
       i2.className = 'zoom'
       img.style.width = '3rem'
       img.src = `../../img/second/${path}/${name}`
-      p.appendChild(i1)
+      // p.appendChild(i1)
       p.appendChild(i2)
+      deleteIcon.className = 'delete'
+      p.appendChild(deleteIcon)
       p.appendChild(img)
       paint.appendChild(p)
     }
@@ -376,6 +392,9 @@ window.onload = function () {
   // 下一页
   document.getElementsByClassName('next')[0].onclick = function () {
     this.style.display = 'none'
+    $('.zoom').hide()
+    $('.rotate').hide()
+    $('.delete').hide()
     document.getElementsByClassName('write')[0].style.display = 'block'
     document.getElementsByClassName('bottom')[0].style.display = 'none'
     document.getElementsByTagName('textarea')[0].value = '请输入你对乡村的一句话。'
